@@ -9,33 +9,53 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+// TODO: Auto-generated Javadoc
 /**
- * ������������Ϣ
- * 
+ * ������������Ϣ.
+ *
  * @author zhangjianshe@gmail.com
- * 
  */
 public class Config {
+	
+	/** The m options. */
 	private Options mOptions;
+	
+	/** The line. */
 	private CommandLine line;
 
+	/**
+	 * Instantiates a new config.
+	 */
 	public Config() {
 		mOptions = new Options();
 
 		init();
 	}
 
+	/**
+	 * Parses the.
+	 *
+	 * @param args the args
+	 * @return true, if successful
+	 * @throws ParseException the parse exception
+	 */
 	public boolean parse(String[] args) throws ParseException {
 		CommandLineParser parser = new BasicParser();
 		line = parser.parse(mOptions, args);
 		return true;
 	}
 
+	/**
+	 * Help.
+	 */
 	public void help() {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp("DatabaseGen", mOptions);
 	}
 
+	/**
+	 * Inits the.
+	 */
 	private void init() {
 		Option option = OptionBuilder.withArgName("driver").hasArg()
 				.withDescription("驱动").create("driver");
@@ -75,47 +95,82 @@ public class Config {
 	}
 
 	/**
-	 * ��ݿ������
-	 * 
-	 * @return
+	 * ��ݿ������.
+	 *
+	 * @return the driver
 	 */
 	public String getDriver() {
 		return line.getOptionValue("driver", "com.mysql.jdbc.Driver");
 	}
 
 	/**
-	 * ��ݿ�����URL
-	 * 
-	 * @return
+	 * ��ݿ�����URL.
+	 *
+	 * @return the jdbcurl
 	 */
 	public String getJDBCURL() {
 		return line.getOptionValue("jdbcurl", "");
 	}
 
+	/**
+	 * Gets the max connections.
+	 *
+	 * @return the max connections
+	 */
 	public int getMaxConnections() {
 		return Integer.valueOf(line.getOptionValue("maxconnections", "20"));
 	}
 
+	/**
+	 * Gets the schema.
+	 *
+	 * @return the schema
+	 */
 	public String getSchema() {
 		return line.getOptionValue("schema", "schema");
 	}
 
+	/**
+	 * Gets the user.
+	 *
+	 * @return the user
+	 */
 	public String getUser() {
 		return line.getOptionValue("user", "user");
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return line.getOptionValue("pwd", "pwd");
 	}
 
+	/**
+	 * Gets the package.
+	 *
+	 * @return the package
+	 */
 	public String getPackage() {
 		return line.getOptionValue("package", "com.mapway.noapp");
 	}
 
+	/**
+	 * Gets the path.
+	 *
+	 * @return the path
+	 */
 	public String getPath() {
 		return line.getOptionValue("path", "");
 	}
 
+	/**
+	 * Gets the nutz.
+	 *
+	 * @return the nutz
+	 */
 	public String getNutz() {
 		return line.getOptionValue("nutz", "");
 	}

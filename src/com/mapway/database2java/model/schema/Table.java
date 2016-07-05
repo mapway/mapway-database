@@ -1,8 +1,18 @@
 package com.mapway.database2java.model.schema;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Table.
+ */
 public class Table implements ITable {
+	
+	/** The columns. */
 	Columns columns;
+	
+	/**
+	 * Instantiates a new table.
+	 */
 	public Table()
 	{
 		columns=new Columns();
@@ -13,8 +23,14 @@ public class Table implements ITable {
 	public Columns getColumns() {
 		return columns;
 	}
+	
+	/** The name. */
 	String name;
+	
+	/** The owner. */
 	String owner;
+	
+	/** The comment. */
 	String comment;
 	/* (non-Javadoc)
 	 * @see com.mapway.database2java.model.schema.ITable#getComment()

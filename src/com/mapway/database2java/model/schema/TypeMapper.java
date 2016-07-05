@@ -1,18 +1,34 @@
 package com.mapway.database2java.model.schema;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TypeMapper.
+ */
 public class TypeMapper {
+	
+	/** The mt 1. */
 	ModleTypes mt1;
+	
+	/** The mt 2. */
 	ModleTypes mt2;
+	
+	/** The mt 4. */
 	ModleTypes mt4;
+	
+	/** The mt net. */
 	ModleTypes mtNet;
+	
+	/** The mt 3. */
 	private ModleTypes mt3;
+	
+	/** The instance. */
 	static TypeMapper instance = null;
 
 	/**
-	 * Javaԭ��������Ͷ�Ӧ��C++����
-	 * 
-	 * @param t
-	 * @return
+	 * Javaԭ��������Ͷ�Ӧ��C++����.
+	 *
+	 * @param t the t
+	 * @return the primitive
 	 */
 	public String getPrimitive(String t) {
 		if (t == null || t.equals("")) {
@@ -36,6 +52,9 @@ public class TypeMapper {
 		return "";
 	}
 
+	/**
+	 * Instantiates a new type mapper.
+	 */
 	public TypeMapper() {
 		instance = this;
 		mt1 = new ModleTypes();
@@ -328,10 +347,20 @@ public class TypeMapper {
 		mt3.Add("CLOB", "OracleTypes.CLOB");
 	}
 
+	/**
+	 * Gets the oracle 2 JDBC.
+	 *
+	 * @return the oracle 2 JDBC
+	 */
 	public ModleTypes getOracle2JDBC() {
 		return mt1;
 	}
 
+	/**
+	 * Gets the single instance of TypeMapper.
+	 *
+	 * @return single instance of TypeMapper
+	 */
 	public static synchronized TypeMapper getInstance() {
 		if (instance == null) {
 			instance = new TypeMapper();
@@ -339,18 +368,38 @@ public class TypeMapper {
 		return instance;
 	}
 
+	/**
+	 * Gets the oracle 2 JDBC 2.
+	 *
+	 * @return the oracle 2 JDBC 2
+	 */
 	public ModleTypes getOracle2JDBC2() {
 		return mt2;
 	}
 
+	/**
+	 * Gets the oracle 2 JDBC 3.
+	 *
+	 * @return the oracle 2 JDBC 3
+	 */
 	public ModleTypes getOracle2JDBC3() {
 		return mt3;
 	}
 
+	/**
+	 * Gets the oracle 2 JDBC 4.
+	 *
+	 * @return the oracle 2 JDBC 4
+	 */
 	public ModleTypes getOracle2JDBC4() {
 		return mt4;
 	}
 
+	/**
+	 * Gets the oracle 2 net.
+	 *
+	 * @return the oracle 2 net
+	 */
 	public ModleTypes getOracle2Net() {
 		return mtNet;
 	}

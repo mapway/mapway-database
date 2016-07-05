@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>mapway-database</groupId>
+	<groupId>cn.mapway</groupId>
 	<artifactId>mapway-database</artifactId>
 	<version>0.0.1</version>
 	<name>mapway-database</name>
@@ -109,9 +109,20 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Javadoc <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
-						<version>2.9.1</version> <executions> <execution> <phase>package</phase> 
-						<goals> <goal>jar</goal> </goals> </execution> </executions> </plugin> -->
+					<!-- Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 					<!-- GPG -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>

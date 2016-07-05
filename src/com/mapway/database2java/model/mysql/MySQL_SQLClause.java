@@ -9,15 +9,28 @@ import com.mapway.database2java.database.MyPool;
 import com.mapway.database2java.model.itf.ISQLClause;
 import com.mapway.database2java.model.oracle.Oracle_SQLClause;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MySQL_SQLClause.
+ */
 public class MySQL_SQLClause implements ISQLClause {
 
+    /** The m database. */
     String m_database = "";
 
    
+    /**
+     * Instantiates a new my SQ L SQL clause.
+     *
+     * @param database the database
+     */
     public MySQL_SQLClause(String database) {
 	m_database = database;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.model.itf.ISQLClause#getTableSQL()
+     */
     public String getTableSQL()
     {
 
@@ -30,6 +43,11 @@ public class MySQL_SQLClause implements ISQLClause {
 	return sql;
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args)
     {
 	MySQL_SQLClause app = new MySQL_SQLClause("youeryuan");
@@ -45,6 +63,9 @@ public class MySQL_SQLClause implements ISQLClause {
 	}
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.model.itf.ISQLClause#getPKSQL()
+     */
     public String getPKSQL()
     {
 	String sql = "select  TABLE_NAME,COLUMN_NAME,CONSTRAINT_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_SCHEMA=\'"
@@ -52,12 +73,18 @@ public class MySQL_SQLClause implements ISQLClause {
 	return sql;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.model.itf.ISQLClause#getProcedureSQL()
+     */
     public String getProcedureSQL()
     {
 
 	return null;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.model.itf.ISQLClause#getSequence_SQL()
+     */
     public String getSequence_SQL()
     {
 	// TODO Auto-generated method stub
@@ -66,7 +93,9 @@ public class MySQL_SQLClause implements ISQLClause {
 
     /**
      * COMMENTS TABLE_NAME COLUMN_NAME DATA_TYPE DATA_LENGTH COLUMN_ID NULLABLE
-     * COMMENTS
+     * COMMENTS.
+     *
+     * @return the view SQL
      */
     public String getViewSQL()
     {

@@ -19,6 +19,7 @@ import com.mapway.database2java.model.schema.Table;
 import com.mapway.database2java.model.schema.Tables;
 import com.mapway.database2java.model.schema.View;
 
+// TODO: Auto-generated Javadoc
 /*
  ============================================================
  #  ____ _  _ ____ _  _ ____  _ _ ____ _  _ ____ _  _ ____  #
@@ -28,10 +29,15 @@ import com.mapway.database2java.model.schema.View;
  ============================================================   
  */
 
+/**
+ * The Class MySQL_Schema2.
+ */
 public class MySQL_Schema2 extends SchemaBase {
 
 	/**
-	 * �ļ�ͷ�İ�Ȩ˵��
+	 * �ļ�ͷ�İ�Ȩ˵��.
+	 *
+	 * @return the copyright
 	 */
 	public String getCopyright() {
 		java.util.Date d = new java.util.Date();
@@ -44,11 +50,20 @@ public class MySQL_Schema2 extends SchemaBase {
 	}
 
 	
+	/**
+	 * Instantiates a new my SQ L schema 2.
+	 *
+	 * @param pool the pool
+	 * @param configure the configure
+	 */
 	public MySQL_Schema2(IConnectionPool pool, Configure configure) {
 		super(pool, configure);
 		this.setSQLClause(new MySQL_SQLClause(configure.getSchema()));
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#fetchSchema()
+	 */
 	public boolean fetchSchema() {
 		super.fetchSchema();
 		Result rs;
@@ -219,6 +234,9 @@ public class MySQL_Schema2 extends SchemaBase {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportTable(com.mapway.database2java.model.schema.ITable, com.mapway.database2java.model.base.Configure)
+	 */
 	public String exportTable(ITable table, Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		out(sb, getCopyright());
@@ -253,6 +271,13 @@ public class MySQL_Schema2 extends SchemaBase {
 		return "";
 	}
 
+	/**
+	 * Write java interface.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaInterface(ITable table, StringBuilder sb,
 			Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
@@ -492,6 +517,13 @@ public class MySQL_Schema2 extends SchemaBase {
 		out(sb, "}");
 	}
 
+	/**
+	 * Write java bean.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaBean(ITable table, StringBuilder sb, Configure conf) {
 		out(sb, "/**");
 		out(sb, " * @author ZhangJianshe@gmail.com");
@@ -791,6 +823,13 @@ public class MySQL_Schema2 extends SchemaBase {
 		out(sb, "}");
 	}
 
+	/**
+	 * Write java objs.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaObjs(ITable table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		out(sb, "import java.util.ArrayList;");
@@ -889,6 +928,13 @@ public class MySQL_Schema2 extends SchemaBase {
 		out(sb, "}");
 	}
 
+	/**
+	 * Write java access.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaAccess(ITable table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
@@ -1802,10 +1848,10 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	/**
 	 * ExportView View has only the following functions selectAll
-	 * selectByWhereTemplate selectByWhereTemplate2
-	 * 
-	 * @param at
-	 * @param confView
+	 * selectByWhereTemplate selectByWhereTemplate2.
+	 *
+	 * @param table the table
+	 * @param conf the conf
 	 */
 	public void exportViews(View table, Configure conf) {
 		StringBuilder sb = new StringBuilder();
@@ -1844,6 +1890,13 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view interface.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewInterface(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 
@@ -1984,6 +2037,13 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view access.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewAccess(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
@@ -2481,6 +2541,13 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view objs.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewObjs(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		out(sb, "import java.util.ArrayList;");
@@ -2579,6 +2646,13 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view bean.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewBean(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		String s = conf.getPackage();
@@ -2890,6 +2964,9 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportProcedures(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportProcedures(Configure confProcedure) {
 
 		StringBuilder sb1 = new StringBuilder();
@@ -2964,6 +3041,12 @@ public class MySQL_Schema2 extends SchemaBase {
 				+ ".java", sb1.toString());
 	}
 
+	/**
+	 * Export procedure argument.
+	 *
+	 * @param func the func
+	 * @param conf the conf
+	 */
 	private void exportProcedureArgument(Procedure func, Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		out(sb, "package " + conf.getPackage() + ".modle;");
@@ -3027,6 +3110,13 @@ public class MySQL_Schema2 extends SchemaBase {
 				+ ".java", sb.toString());
 	}
 
+	/**
+	 * Export procedure interface.
+	 *
+	 * @param func the func
+	 * @param conf the conf
+	 * @param body the body
+	 */
 	private void exportProcedureInterface(Procedure func, Configure conf,
 			StringBuilder body) {
 		StringBuilder sb = new StringBuilder();
@@ -3035,6 +3125,13 @@ public class MySQL_Schema2 extends SchemaBase {
 		body.append(sb.toString());
 	}
 
+	/**
+	 * Export procedure.
+	 *
+	 * @param func the func
+	 * @param conf the conf
+	 * @param body the body
+	 */
 	private void exportProcedure(Procedure func, Configure conf,
 			StringBuilder body) {
 
@@ -3135,6 +3232,12 @@ public class MySQL_Schema2 extends SchemaBase {
 
 	}
 
+	/**
+	 * Find import.
+	 *
+	 * @param arguments the arguments
+	 * @return the string
+	 */
 	private String findImport(Arguments arguments) {
 		StringBuilder imports = new StringBuilder();
 		for (int i = 0; i < arguments.getCount(); i++) {
@@ -3156,6 +3259,9 @@ public class MySQL_Schema2 extends SchemaBase {
 		return imports.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportSpringConfigure(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportSpringConfigure(Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		String header = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
@@ -3196,6 +3302,10 @@ public class MySQL_Schema2 extends SchemaBase {
 		writeToFile(conf.getFilePath(), "bean_dao_mysql.xml", sb.toString());
 
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportDwrConfigure(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportDwrConfigure(Configure conf)
 	{
 		StringBuilder sb = new StringBuilder();

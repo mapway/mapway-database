@@ -71,10 +71,16 @@ import com.mapway.database2java.model.schema.Sequence;
 import com.mapway.database2java.model.schema.Table;
 import com.mapway.database2java.model.schema.View;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Oracle_Schema.
+ */
 public class Oracle_Schema extends SchemaBase {
 
 	/**
-	 * �ļ�ͷ�İ�Ȩ˵��
+	 * �ļ�ͷ�İ�Ȩ˵��.
+	 *
+	 * @return the copyright
 	 */
 	public String getCopyright() {
 		java.util.Date d = new java.util.Date();
@@ -83,11 +89,20 @@ public class Oracle_Schema extends SchemaBase {
 	}
 
 	
+	/**
+	 * Instantiates a new oracle schema.
+	 *
+	 * @param pool the pool
+	 * @param configure the configure
+	 */
 	public Oracle_Schema(IConnectionPool pool, Configure configure) {
 		super(pool, configure);
 		this.setSQLClause(new Oracle_SQLClause(configure.getDatabase()));
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#fetchSchema()
+	 */
 	public boolean fetchSchema() {
 		super.fetchSchema();
 		Result rs;
@@ -261,6 +276,13 @@ public class Oracle_Schema extends SchemaBase {
 		return true;
 	}
 
+	/**
+	 * Export table.
+	 *
+	 * @param table the table
+	 * @param conf the conf
+	 * @return the string
+	 */
 	public String exportTable(Table table, Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		out(sb, getCopyright());
@@ -280,6 +302,13 @@ public class Oracle_Schema extends SchemaBase {
 		return "";
 	}
 
+	/**
+	 * Write java access.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaAccess(Table table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 
@@ -1099,6 +1128,13 @@ public class Oracle_Schema extends SchemaBase {
 		out(sb, "}");
 	}
 
+	/**
+	 * Write java objs.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaObjs(Table table, StringBuilder sb, Configure conf) {
 
 		out(sb, "package " + conf.getPackage() + ";\r\n");
@@ -1205,6 +1241,11 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/**
+	 * Write import J geometry.
+	 *
+	 * @param imports the imports
+	 */
 	private void writeImportJGeometry(StringBuilder imports)
 	{
 		imports.append("import oracle.spatial.geometry.JGeometry;\r\n");
@@ -1213,6 +1254,12 @@ public class Oracle_Schema extends SchemaBase {
 		imports.append("import oracle.sql.STRUCT;\r\n");
 	}
 	
+	/**
+	 * Find column import.
+	 *
+	 * @param cols the cols
+	 * @return the string
+	 */
 	private String findColumnImport(Columns cols )
 	{
 		StringBuilder sb=new StringBuilder();
@@ -1229,6 +1276,13 @@ public class Oracle_Schema extends SchemaBase {
 	}
 	
 	
+	/**
+	 * Write java bean.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJavaBean(Table table, StringBuilder sb, Configure conf) {
 
 		out(sb, "/**");
@@ -1465,10 +1519,10 @@ public class Oracle_Schema extends SchemaBase {
 
 	/**
 	 * ExportView View has only the following functions selectAll
-	 * selectByWhereTemplate selectByWhereTemplate2
-	 * 
-	 * @param at
-	 * @param confView
+	 * selectByWhereTemplate selectByWhereTemplate2.
+	 *
+	 * @param at the at
+	 * @param confView the conf view
 	 */
 	public void exportViews(View at, Configure confView) {
 		StringBuilder sb = new StringBuilder();
@@ -1489,6 +1543,13 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view access.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewAccess(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		out(sb, "import java.sql.Connection;");
@@ -1871,6 +1932,13 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view objs.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewObjs(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		out(sb, "import java.util.ArrayList;\r\n");
@@ -1976,6 +2044,13 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/**
+	 * Write view bean.
+	 *
+	 * @param table the table
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void WriteViewBean(View table, StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		String s = conf.getPackage();
@@ -2204,6 +2279,9 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportProcedures(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportProcedures(Configure confProcedure) {
 		for (int i = 0; i < this.getPackages().getCount(); i++) {
 			Pack pack = getPackages().getAt(i);
@@ -2259,6 +2337,13 @@ public class Oracle_Schema extends SchemaBase {
 		}
 	}
 
+	/**
+	 * Export procedure.
+	 *
+	 * @param func the func
+	 * @param conf the conf
+	 * @param body the body
+	 */
 	private void exportProcedure(Procedure func, Configure conf,
 			StringBuilder body) {
 		StringBuilder sb = new StringBuilder();
@@ -2417,6 +2502,12 @@ public class Oracle_Schema extends SchemaBase {
 
 	}
 
+	/**
+	 * Find import.
+	 *
+	 * @param arguments the arguments
+	 * @return the string
+	 */
 	private String findImport(Arguments arguments) {
 		StringBuilder imports = new StringBuilder();
 		for (int i = 0; i < arguments.getCount(); i++) {
@@ -2437,6 +2528,9 @@ public class Oracle_Schema extends SchemaBase {
 		return imports.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.base.SchemaBase#exportSequence(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportSequence(Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getCopyright());

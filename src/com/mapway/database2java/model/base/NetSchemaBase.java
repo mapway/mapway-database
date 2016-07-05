@@ -18,24 +18,42 @@ import com.mapway.database2java.model.schema.Tables;
 import com.mapway.database2java.model.schema.View;
 import com.mapway.database2java.model.schema.Views;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NetSchemaBase.
+ */
 public class NetSchemaBase implements ISchema {
  
+	/** The a. */
 	public AccessBase a = null;
 
+	/** The tables. */
 	Tables tables = null;
 
+	/** The sequences. */
 	Sequences sequences = null;
 
+	/** The packages. */
 	Packages packages = null;
 
+	/** The views. */
 	Views views = null;
 
+	/** The sql clause. */
 	ISQLClause sqlClause = null;
 
+	/** The m configure. */
 	Configure m_configure = null;
 
+	/** The pks. */
 	Object[][] pks = null;
 
+	/**
+	 * Instantiates a new net schema base.
+	 *
+	 * @param pool the pool
+	 * @param configure the configure
+	 */
 	public NetSchemaBase(IConnectionPool pool, Configure configure) {
 		a = new AccessBase(pool);
 		tables = new Tables();
@@ -45,6 +63,9 @@ public class NetSchemaBase implements ISchema {
 		m_configure = configure;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#fetchSchema()
+	 */
 	public boolean fetchSchema() {
 		Result r;
 		try {
@@ -57,6 +78,7 @@ public class NetSchemaBase implements ISchema {
 		return true;
 	}
 
+	/** The copyright. */
 	String copyright = "\r\n<pre>\r\n\r\n"
 			+ "           =============================================================\r\n"
 			+ "           -   ____ _  _ ____ _  _ ____  _ _ ____ _  _ ____ _  _ ____  -\r\n"
@@ -66,34 +88,39 @@ public class NetSchemaBase implements ISchema {
 			+ "           ============================================================="
 			+ "\r\n\r\n</pre>\r\n";
 
+	/**
+	 * Gets the header.
+	 *
+	 * @return the header
+	 */
 	public String getHeader() {
 		return copyright;
 	}
 
 	/**
-	 * ����SQL����ṩ��
-	 * 
-	 * @param c
+	 * ����SQL����ṩ��.
+	 *
+	 * @param c the new SQL clause
 	 */
 	public void setSQLClause(ISQLClause c) {
 		sqlClause = c;
 	}
 
 	/**
-	 * ��ȡ��ǰ����
-	 * 
-	 * @return
+	 * ��ȡ��ǰ����.
+	 *
+	 * @return the configure
 	 */
 	public Configure getConfigure() {
 		return m_configure;
 	}
 
 	/**
-	 * �� tn�е���cn �Ƿ�Ϊ����
-	 * 
-	 * @param tn
-	 * @param cn
-	 * @return
+	 * �� tn�е���cn �Ƿ�Ϊ����.
+	 *
+	 * @param tn the tn
+	 * @param cn the cn
+	 * @return true, if is pk
 	 */
 	public boolean isPK(String tn, String cn) {
 		boolean b = false;
@@ -109,34 +136,62 @@ public class NetSchemaBase implements ISchema {
 	}
 
 	/**
-	 * ��ȡSCHEMA���
-	 * 
-	 * @return
+	 * ��ȡSCHEMA���.
+	 *
+	 * @return the SQL clause
 	 */
 	public ISQLClause getSQLClause() {
 		return sqlClause;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#getTables()
+	 */
 	public Tables getTables() {
 		return tables;
 	}
 
+	/**
+	 * Gets the sequences.
+	 *
+	 * @return the sequences
+	 */
 	public Sequences getSequences() {
 		return sequences;
 	}
 
+	/**
+	 * Gets the packages.
+	 *
+	 * @return the packages
+	 */
 	public Packages getPackages() {
 		return packages;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#getViews()
+	 */
 	public Views getViews() {
 		return views;
 	}
 
+	/**
+	 * Gets the pks.
+	 *
+	 * @return the pks
+	 */
 	public Object[][] getPKS() {
 		return pks;
 	}
 
+	/**
+	 * Write to file.
+	 *
+	 * @param path the path
+	 * @param fn the fn
+	 * @param s the s
+	 */
 	public void writeToFile(String path, String fn, String s) {
 		File file = new File(path);
 		if (!file.exists()) {
@@ -153,6 +208,9 @@ public class NetSchemaBase implements ISchema {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportJSONTools(com.mapway.database2java.model.base.Configure)
+	 */
 	public String exportJSONTools(Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		out(sb, getCopyright());
@@ -161,6 +219,12 @@ public class NetSchemaBase implements ISchema {
 		return "";
 	}
 
+	/**
+	 * Write JSON tools.
+	 *
+	 * @param sb the sb
+	 * @param conf the conf
+	 */
 	private void writeJSONTools(StringBuilder sb, Configure conf) {
 		
 		StringBuilder sb1=Util.readFromFile(new File("d:\\workspace2008\\database2java4\\src\\template\\json.txt"));
@@ -169,15 +233,27 @@ public class NetSchemaBase implements ISchema {
 		sb.append(s);
 	}
 
+	/**
+	 * Out.
+	 *
+	 * @param sb the sb
+	 * @param s the s
+	 */
 	public void out(StringBuilder sb, String s) {
 		sb.append(s + "\r\n");
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportTable(com.mapway.database2java.model.schema.ITable, com.mapway.database2java.model.base.Configure)
+	 */
 	public String exportTable(ITable table, Configure conf) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportPoolInterface(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportPoolInterface(Configure conf) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getCopyright());
@@ -193,6 +269,9 @@ public class NetSchemaBase implements ISchema {
 		writeToFile(conf.getNetFilePath(), "IConnectionPool.cs", sb.toString());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportExecuteResult(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportExecuteResult(Configure conf) {
 		System.out.println("Export ExecuteResult.....");
 		StringBuilder sb = new StringBuilder();
@@ -269,6 +348,9 @@ public class NetSchemaBase implements ISchema {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportAccessBase(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportAccessBase(Configure conf) {
 		StringBuilder sb=new StringBuilder();
 		sb.append(getCopyright());
@@ -289,19 +371,34 @@ public class NetSchemaBase implements ISchema {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#getCopyright()
+	 */
 	public String getCopyright() {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportViews(com.mapway.database2java.model.schema.View, com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportViews(View at, Configure confTable) {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportProcedures(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportProcedures(Configure confProcedure) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Find prev path.
+	 *
+	 * @param path the path
+	 * @return the string
+	 */
 	public String findPrevPath(String path) {
 		int index = path.lastIndexOf('.');
 		if (index >= 0) {
@@ -310,19 +407,31 @@ public class NetSchemaBase implements ISchema {
 		return "";
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportSequence(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportSequence(Configure conf) {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportSpringConfigure(com.mapway.database2java.model.base.Configure)
+	 */
 	public void exportSpringConfigure(Configure conf)
 	{}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportDwrConfigure(com.mapway.database2java.model.base.Configure)
+	 */
 	@Override
 	public void exportDwrConfigure(Configure conf) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportGwtModule(com.mapway.database2java.model.base.Configure)
+	 */
 	@Override
 	public void exportGwtModule(Configure conf)
 	{
@@ -330,6 +439,9 @@ public class NetSchemaBase implements ISchema {
 	    
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mapway.database2java.model.itf.ISchema#exportJavaBean(com.mapway.database2java.model.base.Configure)
+	 */
 	@Override
 	public void exportJavaBean(Configure conf) {
 		// TODO Auto-generated method stub

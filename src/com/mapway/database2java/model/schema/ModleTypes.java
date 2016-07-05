@@ -2,12 +2,29 @@ package com.mapway.database2java.model.schema;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModleTypes.
+ */
 public class ModleTypes {
+	
+	/** The m dic. */
 	ArrayList<ModleType> m_dic;
+	
+	/**
+	 * Instantiates a new modle types.
+	 */
 	public ModleTypes()
 	{
 		m_dic=new ArrayList<ModleType>(); 
 	}
+	
+	/**
+	 * Adds the.
+	 *
+	 * @param key the key
+	 * @param value the value
+	 */
 	public void Add(String key,String value)
 	{
 		ModleType mt=findModleType(key);
@@ -19,6 +36,13 @@ public class ModleTypes {
 			}
 		mt.setValue(value);
 	}
+	
+	/**
+	 * Find modle type.
+	 *
+	 * @param key the key
+	 * @return the modle type
+	 */
 	public ModleType findModleType(String key)
 	{
 		for(int i=0;i<m_dic.size();i++)
@@ -31,6 +55,13 @@ public class ModleTypes {
 		}
 		return null;
 	}
+	
+	/**
+	 * Find value.
+	 *
+	 * @param key the key
+	 * @return the string
+	 */
 	public String findValue(String key)
 	{
 		for(int i=0;i<m_dic.size();i++)
@@ -43,6 +74,13 @@ public class ModleTypes {
 		}
 		return "";
 	}
+	
+	/**
+	 * Like value.
+	 *
+	 * @param key the key
+	 * @return the string
+	 */
 	public String likeValue(String key)
 	{
 		for(int i=0;i<m_dic.size();i++)

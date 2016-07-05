@@ -10,16 +10,18 @@ import com.mapway.database2java.model.mysql.MySQL_Schema2_gwt;
 import com.mapway.database2java.model.schema.Tables;
 import com.mapway.database2java.model.schema.Views;
 
+// TODO: Auto-generated Javadoc
 /**
- * 输出应用程序
- * 
+ * 输出应用程序.
+ *
  * @author zhangjianshe@gmail.com
- * 
  */
 public class MainApplication {
 
 	/**
-	 * @param args
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 

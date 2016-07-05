@@ -6,18 +6,39 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Vector;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneratorPool.
+ */
 public class GeneratorPool implements IConnectionPool
 {
 
+    /**
+     * Gets the single instance of GeneratorPool.
+     *
+     * @return single instance of GeneratorPool
+     */
     public GeneratorPool getInstance()
     {
 	return m_pool;
 	// TODO Auto-generated constructor stub
     }
 
+    /** The m pool. */
     private static GeneratorPool m_pool;
 
   
+    /**
+     * Instantiates a new generator pool.
+     *
+     * @param drivername the drivername
+     * @param jdbcurl the jdbcurl
+     * @param username the username
+     * @param password the password
+     * @param packagename the packagename
+     * @param path the path
+     * @param connectionSize the connection size
+     */
     public GeneratorPool(String drivername, String jdbcurl, String username,
 	    String password, String packagename, String path, int connectionSize)
     {
@@ -39,22 +60,49 @@ public class GeneratorPool implements IConnectionPool
 	m_pool = this;
     }
 
+    /** The checked out. */
     private int checkedOut;
+    
+    /** The free connections. */
     private Vector freeConnections = new Vector();
+    
+    /** The driver name. */
     private String driverName;
+    
+    /** The passwd. */
     private String passwd;
+    
+    /** The username. */
     private String username;
+    
+    /** The jdbc URL. */
     private String jdbcURL;
+    
+    /** The database. */
     private String database;
+    
+    /** The max connections. */
     private int maxConnections;
+    
+    /** The pack. */
     private String pack;
+    
+    /** The path. */
     private String path;
 
+    /**
+     * Log.
+     *
+     * @param msg the msg
+     */
     public void log(String msg)
     {
 	System.out.println(msg);
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#getConnection()
+     */
     @Override
     public Connection getConnection()
     {
@@ -89,6 +137,9 @@ public class GeneratorPool implements IConnectionPool
 	return con;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#releaseConnection(java.sql.Connection)
+     */
     @Override
     public synchronized void releaseConnection(Connection con)
     {
@@ -98,6 +149,12 @@ public class GeneratorPool implements IConnectionPool
     }
 
 
+    /**
+     * Gets the connection.
+     *
+     * @param timeout the timeout
+     * @return the connection
+     */
     public synchronized Connection getConnection(long timeout)
     {
 	long startTime = new java.util.Date().getTime();
@@ -119,6 +176,9 @@ public class GeneratorPool implements IConnectionPool
 	return con;
     }
 
+    /**
+     * Close.
+     */
     public synchronized void close()
     {
 	Enumeration allConnections = freeConnections.elements();
@@ -137,6 +197,11 @@ public class GeneratorPool implements IConnectionPool
     }
 
 
+    /**
+     * Creates the connection.
+     *
+     * @return the connection
+     */
     private Connection createConnection()
     {
 	Connection con = null;
@@ -161,12 +226,18 @@ public class GeneratorPool implements IConnectionPool
 	return con;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#getPath()
+     */
     @Override
     public String getPath()
     {
 	return path;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#getNetPath()
+     */
     @Override
     public String getNetPath()
     {
@@ -174,12 +245,18 @@ public class GeneratorPool implements IConnectionPool
 	return null;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#getPackage()
+     */
     @Override
     public String getPackage()
     {
 	return pack;
     }
 
+    /* (non-Javadoc)
+     * @see com.mapway.database2java.database.IConnectionPool#getGwtbase()
+     */
     @Override
     public String getGwtbase()
     {
