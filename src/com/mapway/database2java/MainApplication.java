@@ -19,9 +19,18 @@ import com.mapway.database2java.model.schema.Views;
 public class MainApplication {
 
 	/**
+	 * 
+	 * @param configure
+	 */
+	public void execute(IConfigure configure) {
+		gen(configure);
+	}
+
+	/**
 	 * The main method.
 	 *
-	 * @param args the arguments
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 
@@ -40,10 +49,15 @@ public class MainApplication {
 		System.out.println(config.getPackage());
 		System.out.println(config.getPath());
 		System.out.println(config.getSchema());
-
 		System.out.println(config.getUser());
 		System.out.println(config.getPassword());
 
+		MainApplication app = new MainApplication();
+		app.gen(config);
+
+	}
+
+	private void gen(IConfigure config) {
 		IConnectionPool pool = new GeneratorPool(config.getDriver(),
 				config.getJDBCURL(), config.getUser(), config.getPassword(),
 				config.getPackage(), config.getPath(),
@@ -69,9 +83,7 @@ public class MainApplication {
 			System.out.println("Database Connected and fetch successful");
 			System.out.println("Export Path:" + configure.getPath());
 
-			
-			if(config.getNutz().equals("1"))
-			{
+			if (config.getNutz().equals("1")) {
 				Configure conf = configure.copy();
 				schema.exportJavaBean(conf);
 				System.out.println("gen NUTZ OK!");

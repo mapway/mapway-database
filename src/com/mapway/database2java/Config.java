@@ -9,36 +9,22 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-// TODO: Auto-generated Javadoc
 /**
- * ������������Ϣ.
  *
  * @author zhangjianshe@gmail.com
  */
-public class Config {
-	
-	/** The m options. */
+public class Config implements IConfigure {
+
 	private Options mOptions;
-	
-	/** The line. */
+
 	private CommandLine line;
 
-	/**
-	 * Instantiates a new config.
-	 */
 	public Config() {
 		mOptions = new Options();
 
 		init();
 	}
 
-	/**
-	 * Parses the.
-	 *
-	 * @param args the args
-	 * @return true, if successful
-	 * @throws ParseException the parse exception
-	 */
 	public boolean parse(String[] args) throws ParseException {
 		CommandLineParser parser = new BasicParser();
 		line = parser.parse(mOptions, args);
