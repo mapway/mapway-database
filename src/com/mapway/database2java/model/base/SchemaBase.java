@@ -59,8 +59,10 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Instantiates a new schema base.
 	 *
-	 * @param pool the pool
-	 * @param configure the configure
+	 * @param pool
+	 *            the pool
+	 * @param configure
+	 *            the configure
 	 */
 	public SchemaBase(IConnectionPool pool, Configure configure) {
 		a = new AccessBase(pool);
@@ -71,7 +73,9 @@ public class SchemaBase implements ISchema {
 		m_configure = configure;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mapway.database2java.model.itf.ISchema#fetchSchema()
 	 */
 	public boolean fetchSchema() {
@@ -108,7 +112,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * 设置SQL语句提供器.
 	 *
-	 * @param c the new SQL clause
+	 * @param c
+	 *            the new SQL clause
 	 */
 	public void setSQLClause(ISQLClause c) {
 		sqlClause = c;
@@ -126,8 +131,10 @@ public class SchemaBase implements ISchema {
 	/**
 	 * 表 tn中的列cn 是否为主键.
 	 *
-	 * @param tn the tn
-	 * @param cn the cn
+	 * @param tn
+	 *            the tn
+	 * @param cn
+	 *            the cn
 	 * @return true, if is pk
 	 */
 	public boolean isPK(String tn, String cn) {
@@ -154,7 +161,9 @@ public class SchemaBase implements ISchema {
 		return sqlClause;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mapway.database2java.model.itf.ISchema#getTables()
 	 */
 	public Tables getTables() {
@@ -179,7 +188,9 @@ public class SchemaBase implements ISchema {
 		return packages;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mapway.database2java.model.itf.ISchema#getViews()
 	 */
 	public Views getViews() {
@@ -198,9 +209,12 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Write to file.
 	 *
-	 * @param path the path
-	 * @param fn the fn
-	 * @param s the s
+	 * @param path
+	 *            the path
+	 * @param fn
+	 *            the fn
+	 * @param s
+	 *            the s
 	 */
 	public void writeToFile(String path, String fn, String s) {
 		File file = new File(path);
@@ -219,8 +233,12 @@ public class SchemaBase implements ISchema {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportJSONTools(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportJSONTools(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	public String exportJSONTools(Configure conf) {
 		StringBuilder sb = new StringBuilder();
@@ -233,8 +251,10 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Write JSON tools.
 	 *
-	 * @param sb the sb
-	 * @param conf the conf
+	 * @param sb
+	 *            the sb
+	 * @param conf
+	 *            the conf
 	 */
 	private void writeJSONTools(StringBuilder sb, Configure conf) {
 		out(sb, "package " + conf.getPackage() + ";");
@@ -395,23 +415,33 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Out.
 	 *
-	 * @param sb the sb
-	 * @param s the s
+	 * @param sb
+	 *            the sb
+	 * @param s
+	 *            the s
 	 */
 	public void out(StringBuilder sb, String s) {
 		sb.append(s + "\r\n");
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportTable(com.mapway.database2java.model.schema.ITable, com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.mapway.database2java.model.itf.ISchema#exportTable(com.mapway.
+	 * database2java.model.schema.ITable,
+	 * com.mapway.database2java.model.base.Configure)
 	 */
 	public String exportTable(ITable table, Configure conf) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportPoolInterface(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportPoolInterface(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	public void exportPoolInterface(Configure conf) {
 		StringBuilder sb = new StringBuilder();
@@ -441,7 +471,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Read UTF 8 text file.
 	 *
-	 * @param ins the ins
+	 * @param ins
+	 *            the ins
 	 * @return the string
 	 */
 	public static String readUTF8TextFile(InputStream ins) {
@@ -468,7 +499,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Read UTF 8 text file.
 	 *
-	 * @param fileName the file name
+	 * @param fileName
+	 *            the file name
 	 * @return the string
 	 */
 	public static String readUTF8TextFile(String fileName) {
@@ -486,8 +518,10 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Read text file.
 	 *
-	 * @param fileName the file name
-	 * @param encoding the encoding
+	 * @param fileName
+	 *            the file name
+	 * @param encoding
+	 *            the encoding
 	 * @return the string
 	 */
 	public static String readTextFile(String fileName, String encoding) {
@@ -505,7 +539,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Read from file.
 	 *
-	 * @param fileName the file name
+	 * @param fileName
+	 *            the file name
 	 * @return the byte[]
 	 */
 	public static byte[] ReadFromFile(String fileName) {
@@ -529,8 +564,12 @@ public class SchemaBase implements ISchema {
 		return code;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportExecuteResult(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportExecuteResult(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	public void exportExecuteResult(Configure conf) {
 		System.out.println("Export ExecuteResult.....");
@@ -608,8 +647,12 @@ public class SchemaBase implements ISchema {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportAccessBase(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportAccessBase(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	public void exportAccessBase(Configure conf) {
 		StringBuilder sb = new StringBuilder();
@@ -838,22 +881,32 @@ public class SchemaBase implements ISchema {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.mapway.database2java.model.itf.ISchema#getCopyright()
 	 */
 	public String getCopyright() {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportViews(com.mapway.database2java.model.schema.View, com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.mapway.database2java.model.itf.ISchema#exportViews(com.mapway.
+	 * database2java.model.schema.View,
+	 * com.mapway.database2java.model.base.Configure)
 	 */
 	public void exportViews(View at, Configure confTable) {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportProcedures(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportProcedures(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	public void exportProcedures(Configure confProcedure) {
 		// TODO Auto-generated method stub
@@ -863,7 +916,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Find prev path.
 	 *
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return the string
 	 */
 	public String findPrevPath(String path) {
@@ -874,21 +928,33 @@ public class SchemaBase implements ISchema {
 		return "";
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportSequence(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportSequence(com.mapway.
+	 * database2java.model.base.Configure)
 	 */
 	public void exportSequence(Configure conf) {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportSpringConfigure(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportSpringConfigure(com.
+	 * mapway.database2java.model.base.Configure)
 	 */
 	public void exportSpringConfigure(Configure conf) {
 	}
 
-	/* (non-Javadoc)
-	 * @see com.mapway.database2java.model.itf.ISchema#exportDwrConfigure(com.mapway.database2java.model.base.Configure)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.mapway.database2java.model.itf.ISchema#exportDwrConfigure(com.mapway
+	 * .database2java.model.base.Configure)
 	 */
 	@Override
 	public void exportDwrConfigure(Configure conf) {
@@ -899,7 +965,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * 输出GWT模块配置信息.
 	 *
-	 * @param conf the conf
+	 * @param conf
+	 *            the conf
 	 */
 	@Override
 	public void exportGwtModule(Configure conf) {
@@ -918,7 +985,8 @@ public class SchemaBase implements ISchema {
 	/**
 	 * 输出JavaBean.
 	 *
-	 * @param conf the conf
+	 * @param conf
+	 *            the conf
 	 */
 	@Override
 	public void exportJavaBean(Configure conf) {
@@ -945,9 +1013,12 @@ public class SchemaBase implements ISchema {
 	/**
 	 * Gen nutz bean.
 	 *
-	 * @param conf the conf
-	 * @param table the table
-	 * @param sb the sb
+	 * @param conf
+	 *            the conf
+	 * @param table
+	 *            the table
+	 * @param sb
+	 *            the sb
 	 */
 	private void genNutzBean(Configure conf, ITable table, StringBuilder sb) {
 		sb.append(this.getCopyright());
@@ -996,29 +1067,40 @@ public class SchemaBase implements ISchema {
 			out(sb, pk.toString());
 		}
 
-		out(sb, "public class " + table.getJavaName()
-				+ " implements java.io.Serializable{");
+		out(sb,
+				"public class "
+						+ table.getJavaName()
+						+ " implements java.io.Serializable,com.ksyzt.gwt.client.data.IFieldValue{");
 
+		out(sb, "\t public final static String TBL_" +  table.getJavaName()
+				+ "=\"" + table.getJavaName() + "\";");
+		
 		out(sb, "public " + table.getJavaName() + "(){}");
-		
-		
+
+		out(sb, "public Object getFieldValue(String fieldName){");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
 			Column col = table.getColumns().getAt(i);
-			
-			out(sb,"\t public final static String FLD_"+col.getName()+"=\""+col.getName()+"\";");
-			
-			if(count==1)
-			{
+			out(sb,"\tif(\""+col.getName()+"\".equals(fieldName)){\r\n");
+			out(sb,"\t\treturn "+col.getName()+";\r\n");
+			out(sb,"\t}\r\n");
+			out(sb,"\treturn null;");
+		}
+		out(sb, "}");
+
+		for (int i = 0; i < table.getColumns().getCount(); i++) {
+			Column col = table.getColumns().getAt(i);
+
+			out(sb, "\t public final static String FLD_" + col.getName()
+					+ "=\"" + col.getName() + "\";");
+
+			if (count == 1) {
 				if (col.isPK()) {
 					if (col.getJavaType().contains("String")) {
 						out(sb, "\t@Name");
 					} else {
-						if(col.isAuto())
-						{
+						if (col.isAuto()) {
 							out(sb, "\t@Id");
-						}
-						else
-						{
+						} else {
 							out(sb, "\t@Id(auto=false)");
 						}
 					}
