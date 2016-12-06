@@ -1072,19 +1072,21 @@ public class SchemaBase implements ISchema {
 						+ table.getJavaName()
 						+ " implements java.io.Serializable,com.ksyzt.gwt.client.data.IFieldValue{");
 
-		out(sb, "\t public final static String TBL_" +  table.getJavaName()
-				+ "=\"" + table.getJavaName() + "\";");
-		
+		out(sb, "\t public final static String TBL_" + table.getName()
+				+ "=\"" + table.getName() + "\";");
+
 		out(sb, "public " + table.getJavaName() + "(){}");
 
+		out(sb,"/**\r\n 根据字段名称获取字段的值 \r\n*/\r\n");
 		out(sb, "public Object getFieldValue(String fieldName){");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
 			Column col = table.getColumns().getAt(i);
-			out(sb,"\tif(\""+col.getName()+"\".equals(fieldName)){\r\n");
-			out(sb,"\t\treturn "+col.getName()+";\r\n");
-			out(sb,"\t}\r\n");
-			out(sb,"\treturn null;");
+			out(sb, "\tif(FLD_" + col.getName() + ".equals(fieldName)){");
+			out(sb, "\t\treturn " + col.getName() + ";");
+			out(sb, "\t}");
+
 		}
+		out(sb, "\treturn null;");
 		out(sb, "}");
 
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
