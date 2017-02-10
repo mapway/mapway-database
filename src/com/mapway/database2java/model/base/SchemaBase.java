@@ -1022,22 +1022,28 @@ public class SchemaBase implements ISchema {
 	 */
 	private void genNutzBean(Configure conf, ITable table, StringBuilder sb) {
 		sb.append(this.getCopyright());
+		
+		out(sb, "");
+		
 		out(sb, "package " + conf.getPackage() + ";\r\n");
 		out(sb, "import java.util.Date;\r\n");
 		out(sb, "import org.nutz.dao.entity.annotation.*;");
 		out(sb, "import java.math.BigDecimal;");
+		
+		out(sb, "");
 		out(sb, "/**");
 		out(sb, " * 数据库表 " + table.getComment() + "<br/>");
-		out(sb, " * @author database2java@polatu.cn\r\n");
-		out(sb, " * <b>字段列表</b><br/>\r\n");
+		out(sb, " * @author zhangjsf@enn.cn\r\n");
+		out(sb, " *         <b>字段列表</b><br/>\r\n");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
 			Column col = table.getColumns().getAt(i);
-			out(sb, " * " + col.getName() + "   " + col.getComment() + " "
+			out(sb, " *         " + col.getName() + "   " + col.getComment() + " "
 					+ col.getJavaType() + "<br/>");
 		}
 		out(sb, " */");
-
-		out(sb, "@Table(\"" + table.getName() + "\")\r\n");
+		out(sb,"");
+		
+		out(sb, "@Table(\"" + table.getName() + "\")");
 
 		// 查看是否有联合主键
 		boolean moreKey = false;
@@ -1070,31 +1076,58 @@ public class SchemaBase implements ISchema {
 		out(sb,
 				"public class "
 						+ table.getJavaName()
-						+ " implements java.io.Serializable,com.ksyzt.gwt.client.data.IFieldValue{");
+						+ " implements java.io.Serializable,\r\n    com.ksyzt.gwt.client.data.IFieldValue{");
 
-		out(sb, "\t public final static String TBL_" + table.getName()
+		//输出序列化接口
+		out(sb,"  /**");
+		out(sb,"   * 缺省的序列化值.");
+		out(sb,"  */");
+		out(sb,"  private static final long serialVersionUID = 1L;");
+		
+		out(sb,"");
+		//输出表明常量  
+		out(sb,"  /**\r\n     * 表明. \r\n     */");
+		out(sb, "  public static final String TBL_" + table.getName()
 				+ "=\"" + table.getName() + "\";");
 
-		out(sb, "public " + table.getJavaName() + "(){}");
+		out(sb, "  public " + table.getJavaName() + "() {");
+		out(sb, "  }");
 
-		out(sb,"/**\r\n 根据字段名称获取字段的值 \r\n*/\r\n");
-		out(sb, "public Object getFieldValue(String fieldName){");
+		out(sb,"  /**\r\n   * 根据字段名称获取字段的值. \r\n   */");
+		out(sb,"  @Override");
+		out(sb, "  public Object getFieldValue(String fieldName,Integer fieldIndex) {");
+		
+			out(sb,"    if (fieldName != null && fieldName.length() > 0) {");
+			for (int i = 0; i < table.getColumns().getCount(); i++) {
+				Column col = table.getColumns().getAt(i);
+				out(sb, "      if (FLD_" + col.getName() + ".equals(fieldName)) {");
+				out(sb, "        return " + col.getName() + ";");
+				out(sb, "      }");
+			}
+			out(sb, "    } else if (fieldIndex != null && fieldIndex >= 0 && fieldIndex < "+table.getColumns().getCount()+") {");
+
+			for (int i = 0; i < table.getColumns().getCount(); i++) {
+				Column col = table.getColumns().getAt(i);
+				out(sb, "      if (fieldIndex == "+i+") {");
+				out(sb, "        return " + col.getName() + ";");
+				out(sb, "      }");
+			}
+			out(sb, "    } else {");
+			out(sb, "      return null;");
+			out(sb, "    }");
+			out(sb, "    return null;");
+			out(sb, "  }");
+			out(sb,"");
 		for (int i = 0; i < table.getColumns().getCount(); i++) {
 			Column col = table.getColumns().getAt(i);
-			out(sb, "\tif(FLD_" + col.getName() + ".equals(fieldName)){");
-			out(sb, "\t\treturn " + col.getName() + ";");
-			out(sb, "\t}");
-
-		}
-		out(sb, "\treturn null;");
-		out(sb, "}");
-
-		for (int i = 0; i < table.getColumns().getCount(); i++) {
-			Column col = table.getColumns().getAt(i);
-
-			out(sb, "\t public final static String FLD_" + col.getName()
+			out(sb,"  /**\r\n   * 字段"+col.getName()+"在数据中的名称.\r\n   */");
+			out(sb,"  public static final String FLD_" + col.getName()
 					+ "=\"" + col.getName() + "\";");
-
+			out(sb,"");
+			out(sb,"  /**\r\n   * 获取字段"+col.getName()+"的索引值.\r\n   */");
+			out(sb,"  public static final Integer IDX_" + col.getName()
+					+ "="+i+";");
+			
 			if (count == 1) {
 				if (col.isPK()) {
 					if (col.getJavaType().contains("String")) {
@@ -1103,31 +1136,37 @@ public class SchemaBase implements ISchema {
 						if (col.isAuto()) {
 							out(sb, "\t@Id");
 						} else {
-							out(sb, "\t@Id(auto=false)");
+							out(sb, "\t@Id(auto = false)");
 						}
 					}
 				}
 			}
-			out(sb, "\tprivate " + col.getJavaType() + " " + col.getName()
-					+ ";\r\n");
-			out(sb, "\t/**");
-			out(sb, "\t * @return " + col.getName() + "  " + col.getComment()
+			out(sb,"");
+			out(sb," /**\r\n   * 字段"+col.getName()+".\r\n   */");
+			out(sb, "  private " + col.getJavaType() + " " + col.getName()
+					+ ";");
+			out(sb,"");
+			out(sb, "  /**");
+			out(sb, "   * 返回字段"+col.getName()+"的值.");
+			out(sb, "   * @return " + col.getName() + "  " + col.getComment()
 					+ "  " + col.getDatabaseType());
-			out(sb, "\t */");
-			out(sb, "\tpublic " + col.getJavaType() + " get" + col.getName()
-					+ "(){");
-			out(sb, "\t\treturn " + col.getName() + ";");
-			out(sb, "\t\t}\r\n");
-			out(sb, "\t/**");
-			out(sb, "\t * @param " + col.getName() + "  " + col.getComment()
+			out(sb, "  */");
+			out(sb, "  public " + col.getJavaType() + " get" + col.getName()
+					+ "() {");
+			out(sb, "    return " + col.getName() + ";");
+			out(sb, "  }\r\n");
+			
+			out(sb, "  /**");
+			out(sb, "   * 设置字段"+col.getName()+"的值.");
+			out(sb, "   * @param " + col.getName().toLowerCase() + "  " + col.getComment()
 					+ "  " + col.getDatabaseType());
-			out(sb, "\t */");
+			out(sb, "   */");
 			out(sb,
-					"\tpublic void set" + col.getName() + "("
-							+ col.getJavaType() + " " + col.getName() + "){");
-			out(sb, "\t\tthis." + col.getName() + "=" + col.getName() + ";");
+					"  public void set" + col.getName() + "("
+							+ col.getJavaType() + " " + col.getName().toLowerCase() + ") {");
+			out(sb, "    this." + col.getName() + "=" + col.getName().toLowerCase() + ";");
 
-			out(sb, "\t\t}\r\n");
+			out(sb, "  }\r\n");
 		}
 		out(sb, "}");
 	}
