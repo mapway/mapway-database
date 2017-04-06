@@ -9,7 +9,7 @@
     <parent>
         <groupId>cn.mapway</groupId>
         <artifactId>mapway-maven</artifactId>
-        <version>1.0.5-SNAPSHOT</version>
+        <version>1.0.9-SNAPSHOT</version>
         <relativePath>../mapway-maven</relativePath>
     </parent>
     
@@ -120,7 +120,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-            <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-cli</groupId>
@@ -131,7 +130,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
