@@ -211,6 +211,7 @@ public class SchemaBase implements ISchema {
    */
   public void writeToFile(String path, String fn, String s) {
     File file = new File(path);
+
     if (!file.exists()) {
       file.mkdirs();
     }
@@ -996,15 +997,12 @@ public class SchemaBase implements ISchema {
       out(sb, pk.toString());
     }
 
-    out(sb, "public class " + table.getJavaName()
+    out(sb,
+        "public class "
+            + table.getJavaName()
 
-    + " implements java.io.Serializable,\r\n    com.ksyzt.gwt.client.data.IFieldValue{");
+            + " implements com.google.gwt.user.client.rpc.IsSerializable,\r\n    com.ksyzt.gwt.client.data.IFieldValue{");
 
-    // 输出构造函数
-    out(sb, "  /**");
-    out(sb, "   * 构造函数.");
-    out(sb, "  */");
-    out(sb, "  public  " + table.getJavaName() + "(){}");
 
     // 输出序列化接口
     out(sb, "  /**");
@@ -1093,5 +1091,10 @@ public class SchemaBase implements ISchema {
       out(sb, "  }\r\n");
     }
     out(sb, "}");
+  }
+
+
+  public static void main(String[] args) {
+
   }
 }
