@@ -1002,7 +1002,7 @@ public class SchemaBase implements ISchema {
         "public class "
             + table.getJavaName()
 
-            + " implements com.google.gwt.user.client.rpc.IsSerializable,\r\n    com.ksyzt.gwt.client.data.IFieldValue{");
+            + " implements Serializable,com.google.gwt.user.client.rpc.IsSerializable,\r\n    com.ksyzt.gwt.client.data.IFieldValue{");
 
 
     // 输出序列化接口
